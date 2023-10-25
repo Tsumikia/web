@@ -1,0 +1,30 @@
+
+<html>
+
+<head>
+  <style>
+    form {
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+  <form>
+    <input id="in" type="text"></>
+    <input id="sub" type="submit" style="float:right">
+  </form>
+
+  <script>
+    document.getElementById("sub").addEventListener("click", function (event) {
+      event.preventDefault();
+      var input = document.getElementById("in").value;
+      var divElement = document.createElement("div");
+      divElement.textContent = input;
+      divElement.style.textDecoration = "underline";
+      document.querySelector("form").appendChild(divElement); 
+    });
+  </script>
+</body>
+
+</html>

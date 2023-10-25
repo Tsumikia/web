@@ -1,0 +1,112 @@
+<html>
+
+<body>
+  <div class="container">
+    <form id="registration-form">
+      <div>
+        <label for="username">用户名：</label>
+        <input type="text" id="username">
+        <div class="error-message" id="length-error">用户名长度必须为6到18位!</div>
+        <div class="error-message" id="start-error">用户名必须以英文字母开头!</div>
+      </div>
+      <div>
+        <label for="password">密码：</label>
+        <input type="password" id="password">
+        <div class="error-message" id="password-error">密码长度不能小于6位!</div>
+      </div>
+      <button type="submit">提交</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("registration-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      var isValid = true;
+
+      document.getElementById("start-error").style.display = "none";
+      document.getElementById("length-error").style.display = "none";
+
+      var usernamePattern = /^[a-zA-Z]/;
+      if (!username.match(usernamePattern)) {
+        document.getElementById("start-error").style.display = "block";
+        isValid = false;
+      } else {
+        document.getElementById("start-error").style.display = "none";
+        if(username.length < 6 || username.length > 18) {
+          document.getElementById("length-error").style.display = "block";
+        }else{
+          document.getElementById("length-error").style.display = "none";
+        }
+
+      }
+      
+
+
+      if (password.length < 6) {
+        document.getElementById("password-error").style.display = "block";
+        isValid = false;
+      } else {
+        document.getElementById("password-error").style.display = "none";
+      }
+
+      if (isValid) {
+        alert("注册成功！");
+      }
+    });
+  </script>
+</body>
+</html>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+
+  .container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+  }
+
+  *{
+    margin: 5px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+
+  .error-message {
+    display: none;
+    color: red;
+    font-size: 12px;
+  }
+
+  button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+</style>
